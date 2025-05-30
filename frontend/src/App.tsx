@@ -12,8 +12,13 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:8080/api/books')
       .then(res => res.json())
-      .then(data => setBooks(data))
-      .catch(console.error);
+      .then(data => {
+        console.log('Fetched books:', data); // Debugging log
+        setBooks(data);
+      })
+      .catch(error => {
+        console.error('Error fetching books:', error); // Error log
+      });
   }, []);
 
   return (
