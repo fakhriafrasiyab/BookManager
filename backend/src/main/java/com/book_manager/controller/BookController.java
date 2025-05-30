@@ -2,6 +2,7 @@ package com.book_manager.controller;
 
 import com.book_manager.model.Book;
 import com.book_manager.repository.BookRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book bookDetails) {
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @Valid @RequestBody Book bookDetails) {
         return bookRepository.findById(id)
                 .map(book -> {
                     book.setTitle(bookDetails.getTitle());
