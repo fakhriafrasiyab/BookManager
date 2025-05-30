@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export const BookForm = () => {
+type Props = {
+  onBookAdded: () => void;  // callback to refresh list
+};
+
+export const BookForm: React.FC<Props> = ({ onBookAdded }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
@@ -14,6 +18,7 @@ export const BookForm = () => {
       });
       setTitle('');
       setAuthor('');
+      onBookAdded(); // refresh book list
     } catch (error) {
       console.error('Error adding book:', error);
     }
@@ -25,13 +30,14 @@ export const BookForm = () => {
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        required
       />
       <input
         placeholder="Author"
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
+        required
       />
-    
       <button type="submit">Add Book</button>
     </form>
   );
