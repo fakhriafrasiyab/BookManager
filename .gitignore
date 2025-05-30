@@ -1,0 +1,8 @@
+# Ignore node_modules globally (frontend)
+frontend/node_modules
+# Ignore build folders
+**/build/
+# IDE settings
+.idea/
+.vscode/
+.DS_Store
